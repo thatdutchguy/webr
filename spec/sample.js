@@ -1,0 +1,3 @@
+exports.sample = {
+  'hello' : 'world'
+}
