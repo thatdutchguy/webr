@@ -1,0 +1,3 @@
+[submodule "ext/jsdom"]
+	path = ext/jsdom
+	url = git@github.com:thatdutchguy/jsdom.git
