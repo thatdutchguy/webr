@@ -1,3 +1,6 @@
 [submodule "ext/jsdom"]
 	path = ext/jsdom
 	url = git@github.com:thatdutchguy/jsdom.git
+[submodule "ext/node-htmlparser"]
+	path = ext/node-htmlparser
+	url = http://github.com/tautologistics/node-htmlparser.git
