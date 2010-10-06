@@ -1,76 +1,33 @@
 module Webr
-  
   SCRIPT_PATH = './js'
   
-  class ProcessObject
-    attr_reader :platform, :version, :stdout, :fs
-
-    def initialize(context)
-      @context = context
-      
-      @platform = "Webr"
-      @version = "0.0.0"
-
-      @stdout = StdOutObject.new
-      @fs = FsObject.new
-    end
-    
-    def binding(binding_name)
-      if binding_name == "evals"
-        EvalsObject.new(@context)
-      end
-    end
-    
-  end
-
-  class EvalsObject
-    attr_reader :Script
-    
-    def initialize(context)
-      @Script = ScriptObject.new(context)
-    end
-  end
-  
-  class ScriptObject
-    def initialize(context)
-      @context = context
-    end
-    
-    def runInNewContext(src, sandbox, file_name)
-      @context.eval(src, sandbox)
-    end
-  end
-  
-  class FsObject
-    def readFile(file_name, callback)
-      callback.call(nil, File.new(file_name).read)
-    end
-  end
-  
-  class StdOutObject
-    def write(msg)
-      $stdout.write(msg)
-    end
-    
-    def writeln(msg)
-      $stdout.puts(msg)
-    end    
-  end
-
   class Runtime
-    attr_reader :context
+    attr_reader :context, :process
     
     def initialize
       @context = V8::Context.new
-      @context["process"] = ProcessObject.new(@context)
-      @context["__filename"] = __FILE__
-      @context["__dirname"] = File.dirname(__FILE__)
-      @context["module"] = @context["Object"].new
-      @context["exports"] = @context["Object"].new
+      @context["process"]     = Process.new(@context)
+      @context["__filename"]  = __FILE__
+      @context["__dirname"]   = File.dirname(__FILE__)
+      @context["module"]      = @context["Object"].new
+      @context["exports"]     = @context["Object"].new
+
+      # stubbing out some stuff
+      @context["setTimeout"] = lambda do |callback, timeout| 
+        timeout_set(callback, timeout)
+      end
+      @context["clearTimeout"] = lambda do |handle|
+        timeout_clear(handle)
+      end
+      @context["setInterval"] = lambda do |callback, interval|
+        interval_set(callback, interval)
+      end
+      @context["clearInterval"] = lambda do |handle|
+        interval_clear(handle)
+      end
 
       return_module      = lambda { |namespace, trail| module_read(namespace, trail) }
       return_module_path = lambda { |namespace, trail| module_path(namespace, trail) }
-
       define_require = @context.load('js/require.js')
       @context["require"] = define_require.call(@context.scope, @context["Object"].new, return_module, return_module_path)
     end
@@ -80,24 +37,32 @@ module Webr
       dir  = File.dirname(path)
       @context["__filename"] = path
       @context["__dirname"]  = dir
-      
-      # stubbing out some stuff
-      @context["setTimeout"] = lambda do |callback, timeout| 
-        puts "::setTimeout #{timeout}"
-        callback.call()
-      end
-      @context["setInterval"] = lambda do |callback, interval|
-        puts "::setInterval #{interval}"
-      end
-      @context["clearTimeout"] = lambda do
-        puts "::clearTimeout"
-      end
-      @context["clearInterval"] = lambda do
-        puts "::clearInterval"
-      end
-      
       @context.load(file_name)
     end    
+    
+    def timeout_set(callback, timeout)
+      thread = Thread.new do
+        sleep(timeout.to_f/1000)
+        callback.call
+      end
+    end
+    
+    def timeout_clear(handle)
+      handle.kill
+    end
+
+    def interval_set(callback, interval)
+      thread = Thread.new do
+        loop do
+          sleep(interval.to_f/1000)
+          callback.call
+        end
+      end
+    end
+    
+    def interval_clear(handle)
+      handle.kill
+    end
     
     def module_read(namespace, trail = [])
       trail = trail.to_a

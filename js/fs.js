@@ -1,3 +1,5 @@
+var binding = process.binding("fs")
+
 exports = {
-  readFile: process.fs.readFile
+  readFile: binding.readFile
 }

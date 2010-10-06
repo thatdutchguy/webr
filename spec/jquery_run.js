@@ -7,5 +7,5 @@ var location = window.location
 
 jsdom.jQueryify(window, __dirname + "/../ext/jquery/jquery-1.4.2.js", function() {
   window.jQuery('body').append("<div class='testing'>Hello World, It works!</div>");
-  sys.puts(window.jQuery(".testing").text());
+  callback(window.jQuery(".testing").text())
 });
