@@ -12,19 +12,10 @@ module Webr
       @context["module"]      = @context["Object"].new
       @context["exports"]     = @context["Object"].new
 
-      # stubbing out some stuff
-      @context["setTimeout"] = lambda do |callback, timeout| 
-        timeout_set(callback, timeout)
-      end
-      @context["clearTimeout"] = lambda do |handle|
-        timeout_clear(handle)
-      end
-      @context["setInterval"] = lambda do |callback, interval|
-        interval_set(callback, interval)
-      end
-      @context["clearInterval"] = lambda do |handle|
-        interval_clear(handle)
-      end
+      @context["setTimeout"]    = lambda { |callback, timeout|  timeout_set(callback, timeout) }
+      @context["clearTimeout"]  = lambda { |handle| timeout_clear(handle) }
+      @context["setInterval"]   = lambda { |callback, interval| interval_set(callback, interval) }
+      @context["clearInterval"] = lambda { |handle| interval_clear(handle) }
 
       return_module      = lambda { |namespace, trail| module_read(namespace, trail) }
       return_module_path = lambda { |namespace, trail| module_path(namespace, trail) }
