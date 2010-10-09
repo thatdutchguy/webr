@@ -7,4 +7,5 @@ module Webr
   require 'lib/webr/binding'
   require 'lib/webr/process'
   require 'lib/webr/runtime'
+  require 'lib/webr/browser'
 end
