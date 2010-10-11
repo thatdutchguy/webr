@@ -12,8 +12,10 @@ module Webr::Binding
       @context = context
     end
   
-    def runInNewContext(src, sandbox, file_name)
-      @context.eval(src, sandbox)
+    def runInNewContext
+      lambda do |src, sandbox, file_name|
+        @context.eval(src, sandbox)
+      end
     end
   end
 end

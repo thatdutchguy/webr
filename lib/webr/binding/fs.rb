@@ -4,8 +4,10 @@ module Webr::Binding
       @context = context
     end
     
-    def readFile(file_name, callback)
-      callback.call(nil, File.new(file_name).read)
+    def readFile
+      lambda do |file_name, callback|
+        callback.call(nil, File.new(file_name).read)
+      end
     end
   end
 end

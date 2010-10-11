@@ -4,12 +4,16 @@ module Webr::Binding
       @context = context
     end
 
-    def write(msg)
-      $stdout.write(msg)
+    def write
+      lambda do |msg|
+        $stdout.write(msg)
+      end
     end
 
-    def writeln(msg)
-      $stdout.puts(msg)
+    def writeln
+      lambda do |msg|
+        $stdout.puts(msg)
+      end
     end    
   end
 end
