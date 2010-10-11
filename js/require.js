@@ -1,4 +1,4 @@
-(function(global, cache, resolve, resolvePath, basename) {
+(function(global, cache, resolve, resolvePath) {
   
   function createRequire(path) {
     var require = function(namespace) {

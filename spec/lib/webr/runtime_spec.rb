@@ -16,15 +16,15 @@ context "runtime" do
   
   it "loads a module" do
     exports = nil
-    lambda { exports = @context["require"].call('./spec/sample') }.should_not raise_error
+    lambda { exports = @context["require"].call('./spec/sample_module') }.should_not raise_error
     exports.sample.should_not be_nil
     exports.sample.hello.should == "world"
   end
   
   it "caches a loaded module" do
     exports = nil
-    lambda { @context["require"].call('./spec/sample') }.should_not raise_error
-    lambda { exports = @context["require"].call("sample") }.should_not raise_error
+    lambda { @context["require"].call('./spec/sample_module') }.should_not raise_error
+    lambda { exports = @context["require"].call("sample_module") }.should_not raise_error
     exports.sample.should_not be_nil
     exports.sample.hello.should == "world"
   end
@@ -37,7 +37,7 @@ context "runtime" do
     it "calls the callback" do
       (callback = {}).should_receive(:call).with("foo")
       @context["setTimeout"].call(lambda { callback.call("foo") }, 10)
-      sleep 0.01
+      sleep 0.015
     end
   end
   

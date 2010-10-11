@@ -7,3 +7,6 @@
 [submodule "ext/jquery-src"]
 	path = ext/jquery-src
 	url = http://github.com/jquery/jquery.git
+[submodule "ext/jasmine"]
+	path = ext/jasmine
+	url = http://github.com/pivotal/jasmine.git

@@ -1,3 +1,1 @@
-exports.sample = {
-  'hello' : 'world'
-}
+fooBar = "baz"

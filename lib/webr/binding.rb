@@ -1,8 +1,8 @@
 module Webr
   module Binding
-    require 'lib/webr/binding/fs'
-    require 'lib/webr/binding/evals'
-    require 'lib/webr/binding/stdout'
+    require 'webr/binding/fs'
+    require 'webr/binding/evals'
+    require 'webr/binding/stdout'
     
     def self.[](name)
       binding = name.gsub(/^\w/) { |c| c.upcase }

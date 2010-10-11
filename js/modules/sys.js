@@ -1,6 +1,6 @@
 exports = {
-  puts: function(message) {
-    process.stdout.writeln(message)
+  puts: function() {
+    process.stdout.writeln([].slice.call(arguments, 0).join(' '))
   },
   log: function(message, label) {
     var str = label ? "[" + label +  "]: " + message : message

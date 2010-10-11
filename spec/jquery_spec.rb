@@ -1,7 +1,7 @@
 require 'spec/spec_helper'
 
 context "runtime with htmlparser and jsdom loaded" do
-  before(:all) do
+  before(:each) do
     @runtime = Webr::Runtime.new
     @context = @runtime.context
     @context["require"].call(HTMLPARSER_PATH)
