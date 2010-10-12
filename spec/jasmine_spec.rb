@@ -11,7 +11,9 @@ describe Webr::Browser do
       end
     end.should_not raise_error
     # one of the jasmine tests fails
-    # browser.context.eval('document.getElementsByClassName("description").item(0).text').should =~ /210 specs, 0 failures/
-    browser.context.eval('document.getElementsByClassName("description").item(0).text').should =~ /210 specs, 1 failure/
+    message = browser.context.eval('document.getElementsByClassName("description").item(0).text')
+    puts "\nJasmine reports: [#{message}]"
+    # message.should =~ /210 specs, 0 failures/
+    message.should =~ /210 specs, 1 failure/
   end
 end
