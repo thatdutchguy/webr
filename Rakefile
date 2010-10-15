@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.executables = ["webr"]
   s.files = manifest.to_a
-  s.add_dependency('therubyracer', '>= 0.8.0')
+  s.add_dependency('therubyracer', '>= 0.8.0.pre2')
   s.add_dependency('eventmachine')
   s.add_dependency('optitron')
 end
