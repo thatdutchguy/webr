@@ -10,3 +10,6 @@
 [submodule "ext/jasmine"]
 	path = ext/jasmine
 	url = http://github.com/pivotal/jasmine.git
+[submodule "ext/rednode"]
+	path = ext/rednode
+	url = git@github.com:thatdutchguy/rednode.git

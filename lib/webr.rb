@@ -1,17 +1,20 @@
+require 'rubygems'
+
+$:.unshift(File.dirname(__FILE__) + '/../ext/rednode/lib')
+require 'rednode'
+
 $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
-require 'rubygems'
-require 'v8'
+
 
 module Webr
-  VERSION = "0.0.0"
+  VERSION = "0.0.1"
 
-  SCRIPT_PATH = "./js"
-  MODULE_PATH = "#{SCRIPT_PATH}/modules"
-  
-  require 'webr/binding'
-  require 'webr/process'
+  HOME_PATH = File.expand_path(File.dirname(__FILE__) + '/../')
+  SCRIPT_PATH = "#{HOME_PATH}/js"
+
   require 'webr/runtime'
+  require 'webr/portal'
   require 'webr/browser'
 end
