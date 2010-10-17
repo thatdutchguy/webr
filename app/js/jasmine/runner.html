@@ -1,173 +1,132 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Jasmine Test Runner</title>
+  <title>Jasmine results</title>
   <style>
-  body {
-    font-family: "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
-  }
+    html, body {
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      font-size: 80%;
+      font-family: "Lucida Grande", Helvetica, sans-serif;
+    }
+    #header {
+      background: #000;
+      color: #fff;
+      height: 4em;
+    }
+    #header.passed {
+      background-color: #65C400;
+    }
+    #header.failed {
+      background-color: #c40d0d;
+    }
 
+    #header h1 {
+      font-size: 1.8em;
+      margin: 0 10px;
+      padding: 10px;
+      position: absolute;
+    }
+    
+    #summary {
+      float: right;
+      margin: 0;
+      padding: 5px 10px;
+      right: 0;
+      top: 0;
+    }
+    #summary p {
+      margin: 0 0 0 2px;
+    }
+    #summary #totals {
+      font-size: 1.2em;
+    }
 
-  .jasmine_reporter a:visited, .jasmine_reporter a {
-    color: #303; 
-  }
+    #results {
+      margin-bottom: 1em;
+    }
+    
+    .group {
+      margin: 0 10px 5px;
+      padding: 0 0 5px;
+      font-size: 11px;
+    }
+    .group-name {
+      background-color: #000;
+      color: #fff;
+      font-weight: bold;
+      padding: 3px;
+    }
+    .group.failed .group-name {
+      background-color: #c40d0d;
+    }
+    .group.passed .group-name {
+      background-color: #65C400;
+    }
+    
+    .example {
+      margin: 5px 0 5px 5px;
+      padding: 3px 3px 3px 18px;
+    }
+    .example.failed {
+      background-color: #fffbd3;
+      border-bottom: 1px solid #c40d0d;
+      border-left: 5px solid #c40d0d;
+      color: #C20000;
+    }
+    .example.passed {
+      background-color: #DBFFB4;
+      border-bottom: 1px solid #65C400;
+      border-left: 5px solid #65C400;
+      color: #3D7700;
+    }
+    .example .backtrace {
+      color: #000;
+    }
 
-  .jasmine_reporter a:hover, .jasmine_reporter a:active {
-    color: blue; 
-  }
-
-  .run_spec {
-    float:right;
-    padding-right: 5px;
-    font-size: .8em;
-    text-decoration: none;
-  }
-
-  .jasmine_reporter {
-    margin: 0 5px;
-  }
-
-  .banner {
-    color: #303;
-    background-color: #fef;
-    padding: 5px;
-  }
-
-  .logo {
-    float: left;
-    font-size: 1.1em;
-    padding-left: 5px;
-  }
-
-  .logo .version {
-    font-size: .6em;
-    padding-left: 1em;
-  }
-
-  .runner.running {
-    background-color: yellow;
-  }
-
-
-  .options {
-    text-align: right;
-    font-size: .8em;
-  }
-
-
-
-
-  .suite {
-    border: 1px outset gray;
-    margin: 5px 0;
-    padding-left: 1em;
-  }
-
-  .suite .suite {
-    margin: 5px; 
-  }
-
-  .suite.passed {
-    background-color: #dfd;
-  }
-
-  .suite.failed {
-    background-color: #fdd;
-  }
-
-  .spec {
-    margin: 5px;
-    padding-left: 1em;
-    clear: both;
-  }
-
-  .spec.failed, .spec.passed, .spec.skipped {
-    padding-bottom: 5px;
-    border: 1px solid gray;
-  }
-
-  .spec.failed {
-    background-color: #fbb;
-    border-color: red;
-  }
-
-  .spec.passed {
-    background-color: #bfb;
-    border-color: green;
-  }
-
-  .spec.skipped {
-    background-color: #bbb;
-  }
-
-  .messages {
-    border-left: 1px dashed gray;
-    padding-left: 1em;
-    padding-right: 1em;
-  }
-
-  .passed {
-    background-color: #cfc;
-    display: none;
-  }
-
-  .failed {
-    background-color: #fbb;
-  }
-
-  .skipped {
-    color: #777;
-    background-color: #eee;
-    display: none;
-  }
-
-  .resultMessage span.result {
-    display: block;
-    line-height: 2em;
-    color: black;
-  }
-
-  .resultMessage .mismatch {
-    color: black;
-  }
-
-  .stackTrace {
-    white-space: pre;
-    font-size: .8em;
-    margin-left: 10px;
-    max-height: 5em;
-    overflow: auto;
-    border: 1px inset red;
-    padding: 1em;
-    background: #eef;
-  }
-
-  .finished-at {
-    padding-left: 1em;
-    font-size: .6em;
-  }
-
-  .show-passed .passed,
-  .show-skipped .skipped {
-    display: block;
-  }
-
-
-  #jasmine_content {
-    position:fixed;
-    right: 100%;
-  }
-
-  .runner {
-    border: 1px solid gray;
-    display: block;
-    margin: 5px 0;
-    padding: 2px 0 2px 10px;
-  }
   </style>
+
+
 </head>
 <body>
+  <div class="report">
+    <div id="header">
+      <h1>Jasmine Code Examples</h1>
+      <div id="summary">
+        <p id="totals"></p>
+        <p id="duration"></p>
+      </div>
+    </div>
+    <div id="results" class="results">
+    </div>
+  </div>
 
+  
+  <script type="text/html" id="template_group" class="template">
+    <div class="group {{result}}">
+      <div class="group-name">{{name}}</div>
+      {{group_content}}
+    </div>
+  </script>
+  <script type="text/html" id="template_example_passed" class="template">
+    <div class="example passed">
+      <div class="example-name">{{name}}</div>
+    </div>
+  </script>
+  <script type="text/html" id="template_example_failed" class="template">
+    <div class="example failed">
+      <div class="example-name">{{name}}</div>
+      {{items}}
+    </div>
+  </script>
+  <script type="text/html" id="template_example_failed_item" class="template">
+    <div class="example-failure">
+      <div class="message"><pre>{{message}}</pre></div>
+      <div class="backtrace"><pre>{{backtrace}}</pre></div>
+    </div>
+  </script>
 
 </body>
 </html>
