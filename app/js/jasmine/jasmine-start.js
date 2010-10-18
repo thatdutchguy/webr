@@ -1,4 +1,4 @@
-// jasmine.getEnv().addReporter(new jasmine.WebrReporter())
+// need this in the ruby class as I can't identify them there
 jasmine.isSuite = function(suite) {
   return suite instanceof jasmine.Suite
 }

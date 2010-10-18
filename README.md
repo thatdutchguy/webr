@@ -1,3 +1,4 @@
 # Webr (webber) #
 
-webr jasmine [file_name] <format="html">       # Run [file_name] with jasmine loaded
+webr jasmine [file_name]
+      -f/--format=[html, console]   
