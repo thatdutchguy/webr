@@ -150,9 +150,12 @@ module Webr::Jasmine::Reporter
       suites  = runner.suites
       specs   = runner.specs
       results = runner.results
+      
+      hours, minutes, seconds, fraction = Date.day_fraction_to_time(@finished_at - @started_at)
+      time_taken = "%0.8f" % (hours*60*60 + minutes*60 + seconds + fraction.to_f)
 
       totals = "Examples: #{specs.length}, Failure#{'s' unless results.failedCount == 1}: #{results.failedCount}"
-      duration = "Finished in #{"%0.4f" % (@finished_at - @started_at).to_f}s"
+      duration = "Finished in #{time_taken}s"
       "<div class='summary'><p class='totals'>#{totals}</p><p class='duration'>#{duration}</p></div></div>"
     end
   end
