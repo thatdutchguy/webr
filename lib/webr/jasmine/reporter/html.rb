@@ -46,9 +46,11 @@ module Webr::Jasmine::Reporter
       name = spec.description
       results = spec.results
       results.getItems.each do |item|
-        message = item.to_s
-        backtrace = item.trace.stack
-        html << "<div class='example-failure'><div class='message'><pre>#{message}</pre></div><div class='backtrace'><pre>#{backtrace}</pre></div></div>"
+        unless item.passed
+          message = item.to_s
+          backtrace = item.trace.stack
+          html << "<div class='example-failure'><div class='message'><pre>#{message}</pre></div><div class='backtrace'><pre>#{backtrace}</pre></div></div>"
+        end
       end
       html.join
     end

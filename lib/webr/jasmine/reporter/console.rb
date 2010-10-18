@@ -6,7 +6,6 @@ module Webr::Jasmine::Reporter
     end
 
     def summarize(runner)
-      puts "\n"
       render_results(runner.topLevelSuites)
       puts "\n"
       render_summary(runner)
@@ -25,11 +24,14 @@ module Webr::Jasmine::Reporter
   
     def render_spec(spec)
       unless spec.results.passed
+        puts "\n"
         puts "FAILED:"
         puts spec.getFullName
         spec.results.getItems.each do |item|
-          puts item.to_s
-          puts item.trace.stack
+          unless item.passed
+            puts item.to_s
+            puts item.trace.stack
+          end
         end
       end
     end
