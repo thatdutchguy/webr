@@ -9,7 +9,7 @@ $:.unshift(File.dirname(__FILE__)) unless
 
 
 module Webr
-  VERSION = "0.0.1"
+  VERSION = "0.0.2"
 
   HOME_PATH = File.expand_path(File.dirname(__FILE__) + '/../')
   SCRIPT_PATH = "#{HOME_PATH}/js"
