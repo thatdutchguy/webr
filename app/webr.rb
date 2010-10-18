@@ -12,15 +12,16 @@ module Webr
       format = params["format"]
 
       browser = Webr::Browser.new
-      browser.portal.html = File.new("#{home}/app/js/jasmine/runner.html").read
-      browser.portal.root = root
-      browser.portal.require_paths << "#{home}/app/js/htmlparser"
-      browser.portal.require_paths << "#{home}/app/js/dom"
-      browser.portal.scripts << "#{home}/app/js/jasmine/jasmine.js"
-      browser.portal.scripts << "#{home}/app/js/jasmine/jasmine-webr-#{format}.js"
-      browser.portal.scripts << file_name
-      browser.portal.scripts << "#{home}/app/js/jasmine/jasmine-start.js"
-      browser.portal.options[:outputDocument] = true if format == 'html'
+      browser.root = root
+      browser.require_paths << "#{home}/app/js/htmlparser"
+      browser.require_paths << "#{home}/app/js/dom"
+      
+      browser.scripts << "#{home}/app/js/jasmine/jasmine.js"
+      browser.env["WebrReporter"] = Jasmine::Reporter[format]
+      
+      browser.scripts << file_name
+      browser.scripts << "#{home}/app/js/jasmine/jasmine-start.js"
+
       browser.start
     end
   end
