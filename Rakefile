@@ -8,7 +8,7 @@ manifest.exclude 'ext/jsdom/*'
 manifest.exclude 'ext/node-htmlparser/*'
 manifest.exclude 'ext/jquery/*'
 manifest.exclude 'tmp/*'
-manifest.exclude 'webr*.gem*'
+manifest.exclude 'webr*.gem'
 
 Gem::Specification.new do |s|
   $gemspec = s
