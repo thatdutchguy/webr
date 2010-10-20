@@ -1,3 +1,5 @@
+require 'date'
+
 module Webr::Jasmine::Reporter
   class Base
     def initialize(jasmine)
