@@ -43,13 +43,6 @@
   for (var i = 0, len = scripts.length; i < len; i++) {
     script(scripts[i])
   }
-  
-  if (process.webr.options.outputDocument) {
-    process.addListener('exit', function () {
-      require('sys').puts(window.document.innerHTML)
-    })
-  }
-
 })()
 
 // var list = global.window.document.getElementsByTagName("script")
