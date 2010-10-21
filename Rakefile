@@ -3,10 +3,7 @@ require 'lib/webr'
 
 manifest = Rake::FileList.new('**/*')
 manifest.exclude '*.log*'
-manifest.exclude 'ext/jasmine/*'
-manifest.exclude 'ext/jsdom/*'
-manifest.exclude 'ext/node-htmlparser/*'
-manifest.exclude 'ext/jquery/*'
+manifest.exclude 'ext/*'
 manifest.exclude 'tmp/*'
 manifest.exclude 'webr*.gem'
 
@@ -21,7 +18,7 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.executables = ["webr"]
   s.files = manifest.to_a
-  s.add_dependency('therubyracer', '>= 0.8.0.pre2')
+  s.add_dependency('rednode', '>= 0.1.0')
   s.add_dependency('eventmachine')
   s.add_dependency('optitron')
 end
