@@ -1,6 +1,3 @@
-[submodule "ext/jsdom"]
-	path = ext/jsdom
-	url = git@github.com:thatdutchguy/jsdom.git
 [submodule "ext/node-htmlparser"]
 	path = ext/node-htmlparser
 	url = http://github.com/tautologistics/node-htmlparser.git
@@ -10,6 +7,6 @@
 [submodule "ext/jasmine"]
 	path = ext/jasmine
 	url = http://github.com/pivotal/jasmine.git
-[submodule "ext/rednode"]
-	path = ext/rednode
-	url = git@github.com:thatdutchguy/rednode.git
+[submodule "ext/jsdom"]
+	path = ext/jsdom
+	url = git@github.com:thatdutchguy/jsdom.git
