@@ -1,5 +1,3 @@
-require 'date'
-
 module Webr::Jasmine::Reporter
   class Base
     def initialize(jasmine)
@@ -31,5 +29,12 @@ module Webr::Jasmine::Reporter
 
     def log(s)
     end
+    
+    # helpers
+    
+    def filter_backtrace(s)
+      s.lines.inject([]) { |ret, line| line.include?(Webr::HOME_PATH) ? ret : ret << line }.join # filter out internal stuff
+    end
+    
   end
 end

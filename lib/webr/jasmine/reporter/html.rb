@@ -1,5 +1,7 @@
 module Webr::Jasmine::Reporter
   class Html < Webr::Jasmine::Reporter::Base
+    include ERB::Util # for h
+    
     def reportRunnerResults(runner)
       super(runner)
       puts summarize(runner)
@@ -25,7 +27,7 @@ module Webr::Jasmine::Reporter
     def render_suite(suite)
       result = suite_passed(suite) ? 'passed' : 'failed'
       content = render_results(suite.children)
-      "<div class='group #{result}'><div class='group-name'>#{suite.description}</div>#{content}</div>"
+      "<div class='group #{result}'><div class='group-name'>#{h(suite.description)}</div>#{content}</div>"
     end
 
     def suite_passed(suite)
@@ -38,7 +40,7 @@ module Webr::Jasmine::Reporter
     def render_spec(spec)
       result = spec.results.passed ? 'passed' : 'failed'
       content = spec.results.passed ? '' : render_spec_failed(spec)
-      "<div class='example #{result}'><div class='example-name'>#{spec.description}</div>#{content}</div>"
+      "<div class='example #{result}'><div class='example-name'>#{h(spec.description)}</div>#{content}</div>"
     end
 
     def render_spec_failed(spec)
@@ -47,9 +49,8 @@ module Webr::Jasmine::Reporter
       results = spec.results
       results.getItems.each do |item|
         unless item.passed
-          message = item.to_s
-          backtrace = item.trace.stack
-          html << "<div class='example-failure'><div class='message'><pre>#{message}</pre></div><div class='backtrace'><pre>#{backtrace}</pre></div></div>"
+          backtrace = textmate_backtrace h(filter_backtrace(item.trace.stack))
+          html << "<div class='example-failure'><div class='message'><pre>#{h(item.to_s)}</pre></div><div class='backtrace'><pre>#{backtrace}</pre></div></div>"
         end
       end
       html.join
@@ -158,6 +159,11 @@ module Webr::Jasmine::Reporter
       duration = "Finished in #{time_taken}s"
       "<div class='summary'><p class='totals'>#{totals}</p><p class='duration'>#{duration}</p></div></div>"
     end
+
+    def textmate_backtrace(s)
+      s.gsub(/([^:(]*\.js):(\d*)/) { "<a href=\"txmt://open?url=file://#{File.expand_path($1)}&line=#{$2}\">#{$1}:#{$2}</a>" }
+    end
+    
   end
 
 end

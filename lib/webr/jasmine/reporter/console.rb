@@ -30,7 +30,7 @@ module Webr::Jasmine::Reporter
         spec.results.getItems.each do |item|
           unless item.passed
             puts item.to_s
-            puts item.trace.stack
+            puts filter_backtrace(item.trace.stack)
           end
         end
       end
