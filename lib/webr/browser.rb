@@ -1,7 +1,6 @@
 module Webr
   class Browser
-    attr_reader :runtime, :env
-    attr_accessor :scripts, :html, :root, :require_paths, :options
+    attr_reader :runtime, :env, :scripts, :require_paths, :options
     
     def initialize
       @runtime = Webr::Runtime.new("#{SCRIPT_PATH}/webr.js")
@@ -9,10 +8,22 @@ module Webr
       # not so nice
       @env = @portal.env
       @scripts = @portal.scripts
-      @html = @portal.html
-      @root = @portal.root
       @require_paths = @portal.require_paths
       @options = @portal.options
+    end
+
+    def root
+      @portal.root
+    end
+    def root=(root)
+      @portal.root = root
+    end
+
+    def html
+      @portal.html
+    end
+    def html=(html)
+      @portal.html = html
     end
     
     def start
