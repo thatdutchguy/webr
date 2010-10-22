@@ -15,17 +15,9 @@ module Webr
       format = params["format"]
 
       begin
-        browser = Webr::Browser.new
+        browser = Webr::Jasmine::Browser.new(format)
         browser.root = root
-        browser.require_paths << "#{home}/app/js/htmlparser"
-        browser.require_paths << "#{home}/app/js/dom"
-      
-        browser.scripts << "#{home}/app/js/jasmine/jasmine.js"
-        browser.env["WebrReporter"] = Jasmine::Reporter[format]
-      
         browser.scripts << file_name
-        browser.scripts << "#{home}/app/js/jasmine/jasmine-start.js"
-
         browser.start
       rescue Exception => e
         if format == 'html'

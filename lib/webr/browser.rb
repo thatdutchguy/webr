@@ -8,8 +8,8 @@ module Webr
       # not so nice
       @env = @portal.env
       @scripts = @portal.scripts
-      @require_paths = @portal.require_paths
-      @options = @portal.options
+      # @require_paths = @portal.require_paths
+      # @options = @portal.options
     end
 
     def root

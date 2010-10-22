@@ -13,7 +13,7 @@ module Webr
   SCRIPT_PATH = "#{HOME_PATH}/js"
 
   require 'webr/runtime'
-  require 'webr/jasmine'
   require 'webr/portal'
   require 'webr/browser'
+  require 'webr/jasmine'
 end
