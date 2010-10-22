@@ -18,8 +18,9 @@
 
   function script(path) {
     var fs = require('fs'),
-        sys = require('sys')
-        data = fs.readFileSync(path),
+        sys = require('sys'),
+        pre = path.match(/^\//) ? '' : process.webr.root + '/'
+        data = fs.readFileSync(pre + path),
         Script = process.binding('evals').Script
     Script.runInThisContext(data, path)
     updateGlobal()
