@@ -5,12 +5,12 @@ module Webr::Jasmine
       @portal.require_paths << "#{Webr::HOME_PATH}/ext"
       @portal.require_paths << "#{Webr::HOME_PATH}/ext/jsdom/lib"
       @portal.html = "<html><head></head><body></body></html>"
-      @scripts << "#{Webr::HOME_PATH}/app/js/jasmine/jasmine.js"
+      @scripts << "#{Webr::HOME_PATH}/ext/jasmine/lib/jasmine.js"
       @env["WebrReporter"] = Reporter[format]
     end
     
     def start
-      @scripts << "#{Webr::HOME_PATH}/app/js/jasmine/jasmine-start.js"
+      @scripts << "#{Webr::HOME_PATH}/js/jasmine-start.js"
       super
     end
     

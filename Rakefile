@@ -8,6 +8,7 @@ end
 manifest.add 'Rakefile'
 manifest.add 'README.md'
 manifest.add 'webr.gemspec'
+manifest.add 'ext/jasmine/lib/jasmine.js'
 
 Gem::Specification.new do |s|
   $gemspec = s
