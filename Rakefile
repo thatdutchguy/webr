@@ -1,11 +1,13 @@
 require 'rubygems'
 require 'lib/webr'
 
-manifest = Rake::FileList.new('**/*')
-manifest.exclude '*.log*'
-manifest.exclude 'ext/*'
-manifest.exclude 'tmp/*'
-manifest.exclude 'webr*.gem'
+manifest = Rake::FileList.new
+%w(app bin js lib spec tasks ext/jsdom/lib ext/node-htmlparser/lib).each do |dir|
+  manifest.add "#{dir}/**/*"
+end
+manifest.add 'Rakefile'
+manifest.add 'README.md'
+manifest.add 'webr.gemspec'
 
 Gem::Specification.new do |s|
   $gemspec = s
