@@ -2,7 +2,7 @@ require 'rubygems'
 require 'lib/webr'
 
 manifest = Rake::FileList.new
-%w(app bin js lib spec tasks ext/jsdom/lib ext/node-htmlparser/lib).each do |dir|
+%w(app bin js lib spec jspec tasks ext/jsdom/lib ext/node-htmlparser/lib).each do |dir|
   manifest.add "#{dir}/**/*"
 end
 manifest.add 'Rakefile'

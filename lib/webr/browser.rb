@@ -5,9 +5,20 @@ module Webr
     def initialize
       @runtime = Webr::Runtime.new("#{SCRIPT_PATH}/webr.js")
       @portal = @runtime.portal
+
+      @portal.require_paths << "#{Webr::HOME_PATH}/ext"
+      @portal.require_paths << "#{Webr::HOME_PATH}/ext/jsdom/lib"
+      @portal.html = "<html><head></head><body></body></html>"
+
       # not so nice
       @env = @portal.env
       @scripts = @portal.scripts
+    end
+    
+    def open(file_or_url)
+      path = File.expand_path(file_or_url)
+      @portal.root = File.dirname(path)
+      @portal.html = File.new(path).read
     end
 
     def root
