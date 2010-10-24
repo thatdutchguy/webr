@@ -6,4 +6,4 @@
 	url = http://github.com/pivotal/jasmine.git
 [submodule "ext/jsdom"]
 	path = ext/jsdom
-	url = http://github.com/tmpvar/jsdom.git
+	url = git://github.com/thatdutchguy/jsdom.git
