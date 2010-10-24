@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
-describe Webr::Jasmine::Browser do
+describe Webr::Browser do
 
   it "instantiates" do
     browser = Webr::Browser.new
