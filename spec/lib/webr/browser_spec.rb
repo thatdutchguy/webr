@@ -36,6 +36,9 @@ describe Webr::Browser do
         div.parentNode.removeChild(div)
       end
     end
+    
+    it "bases script load paths off of 'root'"
+    
   end
 
   context "loading webpages" do
@@ -88,12 +91,31 @@ describe Webr::Browser do
         h1.innerHTML.should == title.innerHTML
       end
     end
+    
+    it "triggers the window load events" do
+      @browser.open("#{DATA_PATH}/script-external-onload.html")
+      @browser.start
+      @browser.env["document"].tap do |document|
+        document.getElementsByClassName('onload').length.should == 1
+        document.getElementsByClassName('addEventListener').length.should == 1
+      end
+    end    
 
     it "loads and executes the jasmine test suite" do
       pending "this actually works but takes over 10 seconds. Need to figure out why it's so slow."
       @browser.open("#{EXT_PATH}/jasmine/spec/runner.html")
       @browser.start
       @browser.env["jasmine"].should_not be_nil
+    end
+
+    it "loads a webpage containing jQuery from a file and executes the javascript" do
+      @browser.open("#{DATA_PATH}/script-jquery.html")
+      @browser.start
+      @browser.env["document"].tap do |document|
+        h1    = document.getElementsByTagName('h1')[0]
+        title = document.getElementsByTagName('title')[0]
+        h1.innerHTML.should == title.innerHTML
+      end
     end
 
   end
