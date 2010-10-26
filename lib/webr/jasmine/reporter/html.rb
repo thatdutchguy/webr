@@ -49,8 +49,14 @@ module Webr::Jasmine::Reporter
       results = spec.results
       results.getItems.each do |item|
         unless item.passed
-          backtrace = textmate_backtrace h(filter_backtrace(item.trace.stack))
-          html << "<div class='example-failure'><div class='message'><pre>#{h(item.to_s)}</pre></div><div class='backtrace'><pre>#{backtrace}</pre></div></div>"
+          unless item.passed
+            backtrace = if error = item['error']
+              error.respond_to?(:stack) ? textmate_backtrace(h(filter_backtrace(error.stack))) : h(error)
+            else
+              textmate_backtrace h(filter_backtrace(item.trace.stack))
+            end
+            html << "<div class='example-failure'><div class='message'><pre>#{h(item.to_s)}</pre></div><div class='backtrace'><pre>#{backtrace}</pre></div></div>"
+          end
         end
       end
       html.join
