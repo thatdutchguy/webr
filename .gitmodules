@@ -3,7 +3,7 @@
 	url = http://github.com/tautologistics/node-htmlparser.git
 [submodule "ext/jasmine"]
 	path = ext/jasmine
-	url = http://github.com/pivotal/jasmine.git
+	url = git://github.com/thatdutchguy/jasmine.git
 [submodule "ext/jsdom"]
 	path = ext/jsdom
 	url = git://github.com/thatdutchguy/jsdom.git
