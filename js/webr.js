@@ -2,6 +2,7 @@
   var fs = require('fs')
   var sys = require("sys")
   var Script = process.binding('evals').Script
+  var scripts = {}
 
   // update node paths
   var paths = process.webr.require_paths
@@ -22,7 +23,15 @@
   // load a script from a file, relative to the webr 'root' property
   function script(path) {
     var pre = path.match(/^\//) ? '' : process.webr.root + '/'
-        data = fs.readFileSync(pre + path)
+    var fullPath = pre + path
+    if (fullPath in scripts) {
+      // don't load script twice in the same context
+      // multiple file loading/reporting messes up otherwise
+      // TODO: rethink this
+      return
+    }
+    var data = fs.readFileSync(fullPath)
+    scripts[fullPath] = data
     scriptEval(data, path)
   }
 

@@ -21,14 +21,23 @@ module Webr
     opt "format", :in => %w(html console), :default => 'console'
     def jasmine(file_name)
       raise "No such file: #{file_name}" unless File.exist?(file_name)
-      file = File.expand_path(file_name)
-      root = File.expand_path(File.dirname(file))
+      files = []
+      if File.directory?(file_name)
+        root = File.expand_path(file_name)
+        files += Dir["#{root}/*_spec.js"]
+      else
+        files << File.expand_path(file_name)
+        root = File.dirname(File.expand_path(file_name))
+      end
+
       format = params["format"]
 
       begin
         browser = Webr::Jasmine::Browser.new(format)
         browser.root = root
-        browser.scripts << file
+        files.each do |file|
+          browser.scripts << file
+        end
         browser.start
       rescue Exception => e
         if format == 'html'
