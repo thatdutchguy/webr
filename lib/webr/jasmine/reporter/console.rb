@@ -29,8 +29,13 @@ module Webr::Jasmine::Reporter
         puts spec.getFullName
         spec.results.getItems.each do |item|
           unless item.passed
+            backtrace = if error = item['error']
+              error.respond_to?(:stack) ? error.stack : error
+            else
+              item.trace.stack
+            end
             puts item.to_s
-            puts filter_backtrace(item.trace.stack)
+            puts filter_backtrace(backtrace)
           end
         end
       end
