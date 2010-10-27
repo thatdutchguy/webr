@@ -167,7 +167,11 @@ module Webr::Jasmine::Reporter
     end
 
     def textmate_backtrace(s)
-      s.gsub(/([^:(]*\.js):(\d*)/) { "<a href=\"txmt://open?url=file://#{File.expand_path($1)}&line=#{$2}\">#{$1}:#{$2}</a>" }
+      lines = []
+      s.each_line do |line|
+       lines << line.gsub(/([^:(]*\.js):(\d*)/) { "<a href=\"txmt://open?url=file://#{File.expand_path($1)}&line=#{$2}\">#{$1}:#{$2}</a>" }
+      end
+      lines.join
     end
     
   end
