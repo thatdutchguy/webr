@@ -31,7 +31,7 @@ describe Webr::Browser do
       env["document"].tap do |doc|
         div = doc.createElement('div')
         doc.body.appendChild(div)
-        div["innerHTML"] = '<p>Test</p>'
+        div.innerHTML = '<p>Test</p>'
         doc.getElementsByTagName('p')[0].innerHTML.should == "Test"
         div.parentNode.removeChild(div)
       end
