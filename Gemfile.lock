@@ -1,0 +1,50 @@
+PATH
+  remote: .
+  specs:
+    webr (0.0.4)
+      eventmachine
+      optitron
+      rednode (>= 0.1.0)
+      therubyracer (>= 0.8.0.pre3)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    callsite (0.0.4)
+    diff-lcs (1.1.2)
+    eventmachine (0.12.10)
+    optitron (0.2.1)
+      callsite (~> 0.0.4)
+      ruby2ruby (~> 1.2.4)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0.4)
+    rednode (0.1.0)
+      therubyracer (~> 0.8.0.pre)
+    rspec (2.0.1)
+      rspec-core (~> 2.0.1)
+      rspec-expectations (~> 2.0.1)
+      rspec-mocks (~> 2.0.1)
+    rspec-core (2.0.1)
+    rspec-expectations (2.0.1)
+      diff-lcs (>= 1.1.2)
+    rspec-mocks (2.0.1)
+      rspec-core (~> 2.0.1)
+      rspec-expectations (~> 2.0.1)
+    ruby2ruby (1.2.5)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    ruby_parser (2.0.5)
+      sexp_processor (~> 3.0)
+    sexp_processor (3.0.5)
+    therubyracer (0.8.0.pre3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  eventmachine
+  optitron
+  rednode (>= 0.1.0)
+  rspec
+  therubyracer (>= 0.8.0.pre3)
+  webr!
