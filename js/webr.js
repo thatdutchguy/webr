@@ -67,6 +67,9 @@
     setTimeout(listener, 0)
   })
 
+  // fake XMLHttpRequest so jQuery 1.4.3 loads
+  window.XMLHttpRequest = function() {}
+
   copyWindowToGlobal()
 
   // run all scripts assigned by Webr

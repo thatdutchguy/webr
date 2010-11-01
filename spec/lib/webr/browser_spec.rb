@@ -108,8 +108,18 @@ describe Webr::Browser do
       @browser.env["jasmine"].should_not be_nil
     end
 
-    it "loads a webpage containing jQuery from a file and executes the javascript" do
-      @browser.open("#{DATA_PATH}/script-jquery.html")
+    it "loads a webpage containing jQuery 1.4.2 from a file and executes the javascript" do
+      @browser.open("#{DATA_PATH}/script-jquery-1.4.2.html")
+      @browser.start
+      @browser.env["document"].tap do |document|
+        h1    = document.getElementsByTagName('h1')[0]
+        title = document.getElementsByTagName('title')[0]
+        h1.innerHTML.should == title.innerHTML
+      end
+    end
+
+    it "loads a webpage containing jQuery 1.4.3 from a file and executes the javascript" do
+      @browser.open("#{DATA_PATH}/script-jquery-1.4.3.html")
       @browser.start
       @browser.env["document"].tap do |document|
         h1    = document.getElementsByTagName('h1')[0]
