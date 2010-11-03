@@ -1,6 +1,6 @@
 $:.push File.expand_path("../lib", __FILE__)
-require 'rake'
-require 'webr'
+require 'set'
+require 'webr/version'
 
 Gem::Specification.new do |s|
   s.name = 'webr'
@@ -17,13 +17,13 @@ Gem::Specification.new do |s|
   s.add_dependency('optitron')
   s.add_development_dependency('rspec')
 
-  manifest = Rake::FileList.new
-  %w(app bin js lib spec jspec tasks ext/jsdom/lib ext/node-htmlparser/lib).each do |dir|
-    manifest.add "#{dir}/**/*"
+  s.files = Set.new.tap do |fileset|
+    fileset.add 'Rakefile'
+    fileset.add 'README.md'
+    fileset.add 'webr.gemspec'
+    fileset.add 'ext/jasmine/lib/jasmine.js'
+    for dir in %w(app bin js lib spec jspec tasks ext/jsdom/lib ext/node-htmlparser/lib)
+      fileset.merge `cd #{dir} && git ls-files`.split("\n").map {|f| "#{dir}/#{f}"}
+    end
   end
-  manifest.add 'Rakefile'
-  manifest.add 'README.md'
-  manifest.add 'webr.gemspec'
-  manifest.add 'ext/jasmine/lib/jasmine.js'
-  s.files = manifest.to_a
 end
