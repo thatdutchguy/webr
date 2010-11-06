@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
     fileset.add 'README.md'
     fileset.add 'webr.gemspec'
     fileset.add 'ext/jasmine/lib/jasmine.js'
-    for dir in %w(app bin js lib spec jspec tasks ext/jsdom/lib ext/node-htmlparser/lib)
+    for dir in %w(app bin js lib spec jspec tasks ext/jsdom/lib ext/node-htmlparser/lib ext/request)
       fileset.merge `cd #{dir} && git ls-files`.split("\n").map {|f| "#{dir}/#{f}"}
     end
   end
