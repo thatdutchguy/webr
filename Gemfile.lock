@@ -5,7 +5,7 @@ PATH
       eventmachine
       optitron
       rednode (>= 0.1.0)
-      therubyracer (>= 0.8.0.pre3)
+      therubyracer (= 0.8.2.pre2)
 
 GEM
   remote: http://rubygems.org/
@@ -13,13 +13,17 @@ GEM
     callsite (0.0.4)
     diff-lcs (1.1.2)
     eventmachine (0.12.10)
-    optitron (0.2.1)
+    optitron (0.3.2)
       callsite (~> 0.0.4)
+      parameters_extra (~> 0.2.0)
+    parameters_extra (0.2.0)
       ruby2ruby (~> 1.2.4)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0.4)
-    rednode (0.1.0)
-      therubyracer (~> 0.8.0.pre)
+    rake (0.8.7)
+    rednode (0.1.2)
+      eventmachine
+      therubyracer (>= 0.8.0)
     rspec (2.0.1)
       rspec-core (~> 2.0.1)
       rspec-expectations (~> 2.0.1)
@@ -33,18 +37,15 @@ GEM
     ruby2ruby (1.2.5)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
-    ruby_parser (2.0.5)
+    ruby_parser (2.0.6)
       sexp_processor (~> 3.0)
     sexp_processor (3.0.5)
-    therubyracer (0.8.0.pre3)
+    therubyracer (0.8.2.pre2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  eventmachine
-  optitron
-  rednode (>= 0.1.0)
+  rake
   rspec
-  therubyracer (>= 0.8.0.pre3)
   webr!
