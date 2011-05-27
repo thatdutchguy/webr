@@ -5,12 +5,13 @@ PATH
       eventmachine
       optitron
       rednode (>= 0.1.0)
-      therubyracer (= 0.8.2.pre2)
+      therubyracer (= 0.9.0.beta4)
 
 GEM
   remote: http://rubygems.org/
   specs:
-    callsite (0.0.4)
+    callsite (0.0.5)
+      bundler (~> 1.0.0)
     diff-lcs (1.1.2)
     eventmachine (0.12.10)
     optitron (0.3.2)
@@ -40,7 +41,7 @@ GEM
     ruby_parser (2.0.6)
       sexp_processor (~> 3.0)
     sexp_processor (3.0.5)
-    therubyracer (0.8.2.pre2)
+    therubyracer (0.9.0beta4)
 
 PLATFORMS
   ruby

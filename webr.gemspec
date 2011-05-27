@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email = "secretlymexico@gmail.com"
   s.require_paths = ['lib']
   s.executables = ["webr"]
-  s.add_dependency('therubyracer', '0.8.2.pre2')
+  s.add_dependency('therubyracer', '0.9.0.beta4')
   s.add_dependency('rednode', '>= 0.1.0')
   s.add_dependency('eventmachine')
   s.add_dependency('optitron')
