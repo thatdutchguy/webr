@@ -1,11 +1,11 @@
 PATH
   remote: .
   specs:
-    webr (0.0.4)
+    webr (0.0.5)
       eventmachine
       optitron
       rednode (>= 0.1.0)
-      therubyracer (= 0.9.0.beta4)
+      therubyracer (= 0.9.0.beta5)
 
 GEM
   remote: http://rubygems.org/
@@ -14,6 +14,7 @@ GEM
       bundler (~> 1.0.0)
     diff-lcs (1.1.2)
     eventmachine (0.12.10)
+    libv8 (3.3.10.2)
     optitron (0.3.2)
       callsite (~> 0.0.4)
       parameters_extra (~> 0.2.0)
@@ -41,7 +42,8 @@ GEM
     ruby_parser (2.0.6)
       sexp_processor (~> 3.0)
     sexp_processor (3.0.5)
-    therubyracer (0.9.0beta4)
+    therubyracer (0.9.0beta5)
+      libv8 (~> 3.3.10)
 
 PLATFORMS
   ruby
