@@ -23,7 +23,7 @@
   // load a script from a file, relative to the webr 'root' property
   function script(path) {
     var pre = path.match(/^\//) ? '' : process.webr.root + '/'
-    var fullPath = pre + path
+    var fullPath = fs.realpathSync(pre + path)
     if (fullPath in scripts) {
       // don't load script twice in the same context
       // multiple file loading/reporting messes up otherwise
@@ -32,7 +32,7 @@
     }
     var data = fs.readFileSync(fullPath)
     scripts[fullPath] = data
-    scriptEval(data, path)
+    scriptEval(data, fullPath)
   }
 
   // evaluate a script
