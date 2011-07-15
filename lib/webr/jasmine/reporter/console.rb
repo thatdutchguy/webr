@@ -68,7 +68,8 @@ module Webr::Jasmine::Reporter
       specs   = runner.specs
       results = runner.results
 
-      hours, minutes, seconds, fraction = Date.day_fraction_to_time(@finished_at - @started_at)
+      # #TODO: Change this. This method is private in Ruby 1.9 - which is a little weird.
+      hours, minutes, seconds, fraction = Date.send(:day_fraction_to_time, @finished_at - @started_at)
       time_taken = "%0.8f" % (hours*60*60 + minutes*60 + seconds + fraction.to_f)
 
       puts "Finished in #{time_taken}s"
