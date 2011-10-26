@@ -5,11 +5,11 @@ module Webr::Jasmine
       @scripts << "#{Webr::HOME_PATH}/ext/jasmine/lib/jasmine.js"
       @env["WebrReporter"] = Reporter[format]
     end
-    
+
     def start
       @scripts << "#{Webr::HOME_PATH}/js/jasmine-start.js"
       super
     end
-    
+
   end
 end

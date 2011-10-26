@@ -2,7 +2,7 @@ module Webr::Jasmine::Reporter
   class Console < Webr::Jasmine::Reporter::Base
     def initialize(jasmine)
       super
-      
+
       @fail_count = 0
     end
 
@@ -28,7 +28,7 @@ module Webr::Jasmine::Reporter
       puts "\n"
       render_summary(runner)
     end
-  
+
     def render_results(suites_or_specs)
       suites_or_specs.each do |suite_or_spec|
         render_suite(suite_or_spec) if @jasmine.isSuite(suite_or_spec)
@@ -39,7 +39,7 @@ module Webr::Jasmine::Reporter
     def render_suite(suite)
       render_results(suite.children)
     end
-  
+
     def render_spec(spec)
       unless spec.results.passed
         puts "\nFailures:" if @fail_count == 0
