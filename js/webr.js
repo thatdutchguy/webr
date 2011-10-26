@@ -56,7 +56,7 @@
   } else {
     window.location.search = ""
   }
-  
+
   // 'emulate' window load
   window.addEventListener = function(type, listener, capturing) {
     if (type == 'load' || type == "DOMContentLoaded") {

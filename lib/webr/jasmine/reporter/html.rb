@@ -1,7 +1,7 @@
 module Webr::Jasmine::Reporter
   class Html < Webr::Jasmine::Reporter::Base
     include ERB::Util # for h
-    
+
     def reportRunnerResults(runner)
       super(runner)
       puts summarize(runner)
@@ -14,7 +14,7 @@ module Webr::Jasmine::Reporter
       status = runner.results.failedCount > 0 ? 'failed' : 'passed'
       "<!DOCTYPE html><html><head><title>Jasmine results</title>#{css}</head><body></body><div class='report'><div id='header' class='#{status}'><h1>Jasmine Code Examples</h1>#{summary}<div id='results' class='results'>#{results}</div></div></html>"
     end
-  
+
     def render_results(suites_or_specs)
       html = []
       suites_or_specs.each do |suite_or_spec|
@@ -23,7 +23,7 @@ module Webr::Jasmine::Reporter
       end
       html.join
     end
-  
+
     def render_suite(suite)
       result = suite_passed(suite) ? 'passed' : 'failed'
       content = render_results(suite.children)
@@ -36,7 +36,7 @@ module Webr::Jasmine::Reporter
       end
       true
     end
-  
+
     def render_spec(spec)
       result = spec.results.passed ? 'passed' : 'failed'
       content = spec.results.passed ? '' : render_spec_failed(spec)
@@ -174,7 +174,7 @@ module Webr::Jasmine::Reporter
       end
       lines.join
     end
-    
+
   end
 
 end

@@ -7,7 +7,7 @@ end
 module Webr
   class Runtime
     attr_reader :node, :process, :portal
-    
+
     def initialize(script)
       @node = Rednode::Node.new(script)
       @process = Rednode::Process.new(@node)
