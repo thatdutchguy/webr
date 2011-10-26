@@ -14,7 +14,7 @@ describe Webr::Jasmine::Reporter::Console do
     reporter.render_summary(runner)
     output.should match /Examples: 0, Failures: 0\nFinished in/
   end
-  
+
 end
 
 

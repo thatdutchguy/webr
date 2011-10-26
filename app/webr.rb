@@ -2,7 +2,7 @@ require 'webr'
 require 'optitron'
 
 module Webr
-  
+
   class App < Optitron::CLI
     include ERB::Util # for the #h method
 
@@ -16,7 +16,7 @@ module Webr
       browser.open(file_name)
       browser.start
     end
-    
+
     desc "Run [file_name] using jasmine and report"
     opt "format", :in => %w(html console), :default => 'console'
     def jasmine(file_name)
@@ -52,6 +52,6 @@ module Webr
     end
 
   end
-  
+
   App.dispatch
 end

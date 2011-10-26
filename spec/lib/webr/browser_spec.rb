@@ -36,16 +36,16 @@ describe Webr::Browser do
         div.parentNode.removeChild(div)
       end
     end
-    
+
     it "bases script load paths off of 'root'"
-    
+
   end
 
   context "loading webpages" do
     before(:each) do
       @browser = Webr::Browser.new
     end
-    
+
     it "loads a web page from a file" do
       @browser.open("#{DATA_PATH}/plain.html")
       @browser.start
@@ -91,7 +91,7 @@ describe Webr::Browser do
         h1.innerHTML.should == title.innerHTML
       end
     end
-    
+
     it "triggers the window load events" do
       @browser.open("#{DATA_PATH}/script-external-onload.html")
       @browser.start
@@ -99,7 +99,7 @@ describe Webr::Browser do
         document.getElementsByClassName('onload').length.should == 1
         document.getElementsByClassName('addEventListener').length.should == 1
       end
-    end    
+    end
 
     it "loads and executes the jasmine test suite" do
       pending "this actually works but takes over 10 seconds. Need to figure out why it's so slow."

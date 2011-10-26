@@ -8,7 +8,7 @@ module Webr::Jasmine
         raise "Undefined reporter: #{name}"
       end
     end
-    
+
     require 'webr/jasmine/reporter/base'
     require 'webr/jasmine/reporter/html'
     require 'webr/jasmine/reporter/console'

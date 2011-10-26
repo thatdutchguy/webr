@@ -1,7 +1,7 @@
 module Webr
   class Browser
     attr_reader :runtime, :env, :scripts
-    
+
     def initialize
       @runtime = Webr::Runtime.new("#{SCRIPT_PATH}/webr.js")
       @portal = @runtime.portal
@@ -15,7 +15,7 @@ module Webr
       @env = @portal.env
       @scripts = @portal.scripts
     end
-    
+
     def open(file_or_url)
       path = File.expand_path(file_or_url)
       @portal.root = File.dirname(path)
@@ -35,10 +35,10 @@ module Webr
     def html=(html)
       @portal.html = html
     end
-    
+
     def start
       @runtime.start
     end
-    
+
   end
 end
